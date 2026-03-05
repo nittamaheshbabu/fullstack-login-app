@@ -1,3 +1,6 @@
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 require("dotenv").config();
 
 const express = require("express");
@@ -6,13 +9,11 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// connect database
 connectDB();
 
 app.use(cors());
 app.use(express.json());
 
-// routes
 app.use("/api", require("./routes/authRoutes"));
 
 const PORT = process.env.PORT || 5000;
